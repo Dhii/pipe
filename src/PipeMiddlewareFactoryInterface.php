@@ -9,7 +9,7 @@ use RuntimeException;
 /**
  * Something that can create a middleware that will dispatch a pipe when processing.
  */
-interface PipeMiddlewareInterface
+interface PipeMiddlewareFactoryInterface
 {
     /**
      * Creates a middleware that dispatches a pipe when processing.

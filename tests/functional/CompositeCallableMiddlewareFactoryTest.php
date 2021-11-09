@@ -4,11 +4,33 @@ declare(strict_types=1);
 
 namespace Dhii\Pipe\Test\Func;
 
-use Dhii\Pipe\CompositeCallbackMiddlewareFactoryInterface;
+use Dhii\Pipe\CallbackPipeFactoryInterface;
+use Dhii\Pipe\CompositeCallbackMiddlewareFactoryInterface as Subject;
+use Dhii\Pipe\CallbackMiddlewareFactoryInterface;
+use Dhii\Pipe\PipeMiddlewareFactoryInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @psalm-import-type CallableMiddleware from CallbackMiddlewareFactoryInterface
+ */
 class CompositeCallableMiddlewareFactoryTest extends TestCase
 {
+    /**
+     * @return Subject|MockObject The new mock of the test subject.
+     */
+    protected function createSubject(
+        CallbackPipeFactoryInterface   $callbackPipeFactory,
+        PipeMiddlewareFactoryInterface $pipeMiddlewareFactory
+    ): Subject {
+        $mock = $this->getMockBuilder(Subject::class)
+            ->enableProxyingToOriginalMethods()
+            ->setConstructorArgs([$callbackPipeFactory, $pipeMiddlewareFactory])
+            ->getMock();
+
+        return $mock;
+    }
+
     public function testCreateMiddlewareFromMiddleware()
     {
         {
@@ -19,8 +41,10 @@ class CompositeCallableMiddlewareFactoryTest extends TestCase
             $middlewareEnd = function ($input, callable $next) use (&$sequence) { return []; };
             $middleware = [$middlewareStart, $middlewareA, $middlewareB, $middlewareEnd];
             $final = function () use (&$sequence) { $sequence[] = '.'; };
-            $subject = $this->createSubject($middleware);
-            /** @var $subject CompositeCallbackMiddlewareFactoryInterface */
+
+            $callbackPipeFactory = $this->createCallbackPipeFactory();
+            $pipeMiddlewareFactory = $this->createPipeMiddlewareFactory();
+            $subject = $this->createSubject($callbackPipeFactory, $pipeMiddlewareFactory);
         }
 
         {

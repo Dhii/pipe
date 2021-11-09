@@ -1,6 +1,6 @@
 {
-  "name": "dhii/php-project",
-  "description": "A PHP starter to ease project creation",
+  "name": "dhii/pipe",
+  "description": "A universal piping mechanism",
   "minimum-stability": "dev",
   "license": "MIT",
   "authors": [
@@ -21,12 +21,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Me\\Library\\": "src"
+      "Dhii\\Pipe\\": "src"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Me\\Library\\Test\\Func\\": "tests/functional"
+      "Dhii\\Pipe\\Test\\Func\\": "tests/functional"
     }
   }
 }

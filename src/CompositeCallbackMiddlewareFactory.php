@@ -7,6 +7,8 @@ namespace Dhii\Pipe;
 use RuntimeException;
 
 /**
+ * @template Input
+ * @template Output
  * @psalm-import-type CallableMiddleware from CallbackMiddlewareFactoryInterface
  */
 class CompositeCallbackMiddlewareFactory implements CompositeCallbackMiddlewareFactoryInterface

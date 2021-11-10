@@ -9,8 +9,8 @@ use RuntimeException;
 /**
  * Something that can crete a pipe, using callables as middleware.
  *
- * @template I
- * @psalm-import-type CallableMiddleware from CallbackPipeFactoryInterface
+ * @template Input
+ * @psalm-import-type CallableMiddleware from CallbackMiddlewareFactoryInterface
  */
 interface CallbackPipeFactoryInterface
 {

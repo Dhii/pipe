@@ -9,6 +9,8 @@ use RuntimeException;
 /**
  * Something that can create a middleware that will dispatch other middleware in the form of callbacks when processing.
  *
+ * @template Input
+ * @template Output
  * @psalm-import-type CallableMiddleware from CallbackMiddlewareFactoryInterface
  */
 interface CompositeCallbackMiddlewareFactoryInterface

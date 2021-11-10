@@ -9,8 +9,9 @@ use RuntimeException;
 /**
  * Can create a middleware from a callback.
  *
- * @template I
- * @psalm-type CallableMiddleware = callable(I, callable(I))
+ * @template Input
+ * @template Output
+ * @psalm-type CallableMiddleware = callable(\Input, callable(\Input)): \Output
  */
 interface CallbackMiddlewareFactoryInterface
 {

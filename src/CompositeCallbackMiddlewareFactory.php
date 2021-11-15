@@ -9,7 +9,7 @@ use RuntimeException;
 /**
  * @template Input
  * @template Output
- * @psalm-import-type CallableMiddleware from CallbackMiddlewareFactoryInterface
+ * @psalm-type CallableMiddleware = callable(\Input, callable(\Input)): \Output
  */
 class CompositeCallbackMiddlewareFactory implements CompositeCallbackMiddlewareFactoryInterface
 {

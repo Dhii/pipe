@@ -42,6 +42,7 @@ class CompositeCallableMiddlewareFactoryTest extends TestCase
             $middleware = [$middlewareStart, $middlewareA, $middlewareB, $middlewareEnd];
             $final = function () use (&$sequence) { $sequence[] = '.'; };
 
+            $this->markTestIncomplete('Still need to implement the factories required below');
             $callbackPipeFactory = $this->createCallbackPipeFactory();
             $pipeMiddlewareFactory = $this->createPipeMiddlewareFactory();
             $subject = $this->createSubject($callbackPipeFactory, $pipeMiddlewareFactory);

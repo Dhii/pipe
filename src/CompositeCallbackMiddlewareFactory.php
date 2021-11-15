@@ -23,7 +23,7 @@ class CompositeCallbackMiddlewareFactory implements CompositeCallbackMiddlewareF
     protected $pipeMiddlewareFactory;
 
     public function __construct(
-        CallbackPipeFactoryInterface   $callbackPipeFactory,
+        CallbackPipeFactoryInterface $callbackPipeFactory,
         PipeMiddlewareFactoryInterface $pipeMiddlewareFactory
     ) {
 
@@ -46,7 +46,8 @@ class CompositeCallbackMiddlewareFactory implements CompositeCallbackMiddlewareF
      * Creates a pipe using callbacks as middleware.
      *
      * @see CallbackPipeFactoryInterface::createPipeFromCallbacks()
-     * @param iterable<callable> $callableMiddleware The list of middleware callbacks for the pipe, in order of processing.
+     * @param iterable<callable> $callableMiddleware The list of middleware callbacks for the pipe,
+     *                                               in order of processing.
      * @psalm-param iterable<CallableMiddleware>
      * @return PipeInterface The new pipe that will cause the given middleware callbacks to process the input.
      * @throws RuntimeException If problem creating.

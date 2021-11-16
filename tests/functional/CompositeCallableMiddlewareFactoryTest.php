@@ -62,13 +62,18 @@ class CompositeCallableMiddlewareFactoryTest extends TestCase
         }
     }
 
+    /**
+     * @param CallbackMiddlewareFactoryInterface $callbackMiddlewareFactory
+     * @param MiddlewarePipeFactoryInterface $middlewarePipeFactory
+     * @return CallbackPipeFactoryInterface|MockObject
+     */
     protected function createCallbackPipeFactory(
         CallbackMiddlewareFactoryInterface $callbackMiddlewareFactory,
         MiddlewarePipeFactoryInterface $middlewarePipeFactory
     ): CallbackPipeFactoryInterface {
         $mock = $this->getMockBuilder(CallbackPipeFactory::class)
             ->enableProxyingToOriginalMethods()
-            ->setConstructorArgs([])
+            ->setConstructorArgs([$callbackMiddlewareFactory, $middlewarePipeFactory])
             ->getMock();
 
         return $mock;

@@ -11,7 +11,9 @@ use Traversable;
  * A factory that creates a pipe out of callbacks.
  *
  * @template Input
- * @psalm-import-type CallableMiddleware from CallbackMiddlewareFactoryInterface
+ * @template Output
+ * @psalm-type Next = callable(\Input): \Output
+ * @psalm-type CallableMiddleware = callable(\Input, \Next): \Output
  */
 class CallbackPipeFactory implements CallbackPipeFactoryInterface
 {

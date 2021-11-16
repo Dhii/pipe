@@ -11,7 +11,8 @@ use RuntimeException;
  *
  * @template Input
  * @template Output
- * @psalm-type CallableMiddleware = callable(\Input, callable(\Input)): \Output
+ * @psalm-type Next = callable(\Input): \Output
+ * @psalm-type CallableMiddleware = callable(\Input, \Next): \Output
  */
 interface CompositeCallbackMiddlewareFactoryInterface
 {

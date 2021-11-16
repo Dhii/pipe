@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Dhii\Pipe\Test\Func;
 
+use Dhii\Pipe\CallbackPipeFactory;
 use Dhii\Pipe\CallbackPipeFactoryInterface;
 use Dhii\Pipe\CompositeCallbackMiddlewareFactoryInterface as Subject;
 use Dhii\Pipe\CallbackMiddlewareFactoryInterface;
+use Dhii\Pipe\MiddlewarePipeFactoryInterface;
 use Dhii\Pipe\PipeMiddlewareFactoryInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -43,7 +45,9 @@ class CompositeCallableMiddlewareFactoryTest extends TestCase
             $final = function () use (&$sequence) { $sequence[] = '.'; };
 
             $this->markTestIncomplete('Still need to implement the factories required below');
-            $callbackPipeFactory = $this->createCallbackPipeFactory();
+            $callbackMiddlewareFactory = $this->createCallbackMiddlewareFactory();
+            $middlewarePipeFactory = $this->createMiddlewarePipeFactory();
+            $callbackPipeFactory = $this->createCallbackPipeFactory($callbackMiddlewareFactory, $middlewarePipeFactory);
             $pipeMiddlewareFactory = $this->createPipeMiddlewareFactory();
             $subject = $this->createSubject($callbackPipeFactory, $pipeMiddlewareFactory);
         }
@@ -56,5 +60,17 @@ class CompositeCallableMiddlewareFactoryTest extends TestCase
         {
             $this->assertEquals([$input, 'A', 'B', '.'], $result);
         }
+    }
+
+    protected function createCallbackPipeFactory(
+        CallbackMiddlewareFactoryInterface $callbackMiddlewareFactory,
+        MiddlewarePipeFactoryInterface $middlewarePipeFactory
+    ): CallbackPipeFactoryInterface {
+        $mock = $this->getMockBuilder(CallbackPipeFactory::class)
+            ->enableProxyingToOriginalMethods()
+            ->setConstructorArgs([])
+            ->getMock();
+
+        return $mock;
     }
 }

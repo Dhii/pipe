@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Dhii\Pipe\Test\Func;
 
+use Dhii\Pipe\CallbackMiddlewareFactory;
 use Dhii\Pipe\CallbackPipeFactory;
 use Dhii\Pipe\CallbackPipeFactoryInterface;
 use Dhii\Pipe\CompositeCallbackMiddlewareFactoryInterface as Subject;
@@ -74,6 +75,19 @@ class CompositeCallableMiddlewareFactoryTest extends TestCase
         $mock = $this->getMockBuilder(CallbackPipeFactory::class)
             ->enableProxyingToOriginalMethods()
             ->setConstructorArgs([$callbackMiddlewareFactory, $middlewarePipeFactory])
+            ->getMock();
+
+        return $mock;
+    }
+
+    /**
+     * @return CallbackMiddlewareFactoryInterface|MockObject
+     */
+    protected function createCallbackMiddlewareFactory(): CallbackMiddlewareFactoryInterface
+    {
+        $mock = $this->getMockBuilder(CallbackMiddlewareFactory::class)
+            ->enableProxyingToOriginalMethods()
+            ->setConstructorArgs([])
             ->getMock();
 
         return $mock;

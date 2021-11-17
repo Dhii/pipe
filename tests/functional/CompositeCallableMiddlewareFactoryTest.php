@@ -7,7 +7,7 @@ namespace Dhii\Pipe\Test\Func;
 use Dhii\Pipe\CallbackMiddlewareFactory;
 use Dhii\Pipe\CallbackPipeFactory;
 use Dhii\Pipe\CallbackPipeFactoryInterface;
-use Dhii\Pipe\CompositeCallbackMiddlewareFactoryInterface as Subject;
+use Dhii\Pipe\CompositeCallbackMiddlewareFactory as Subject;
 use Dhii\Pipe\CallbackMiddlewareFactoryInterface;
 use Dhii\Pipe\MiddlewarePipeFactory;
 use Dhii\Pipe\MiddlewarePipeFactoryInterface;

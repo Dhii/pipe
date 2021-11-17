@@ -10,7 +10,9 @@ use RuntimeException;
  * Something that can crete a pipe, using callables as middleware.
  *
  * @template Input
- * @psalm-import-type CallableMiddleware from CallbackMiddlewareFactoryInterface
+ * @template Output
+ * @psalm-type Next = callable(\Input): \Output
+ * @psalm-type CallableMiddleware = callable(\Input, \Next): \Output
  */
 interface CallbackPipeFactoryInterface
 {

@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Dhii\Pipe;
 
 /**
+ * A middleware that invokes the configured callback for processing.
+ *
  * @template Input
  * @template Output
  * @psalm-type Next = callable(\Input): \Output
  * @psalm-type CallableMiddleware = callable(\Input, \Next): \Output
- *
- * A middleware that invokes the configured callback for processing.
  */
 class CallbackMiddleware implements MiddlewareInterface
 {

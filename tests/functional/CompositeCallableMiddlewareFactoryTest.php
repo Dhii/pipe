@@ -60,7 +60,7 @@ class CompositeCallableMiddlewareFactoryTest extends TestCase
         }
 
         {
-            $this->assertEquals([$input, 'A', 'B', '.'], $result);
+            $this->assertEquals([$input, 'A', 'B', '.'], iterator_to_array($result));
         }
     }
 

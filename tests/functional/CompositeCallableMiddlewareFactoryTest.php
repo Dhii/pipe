@@ -11,6 +11,7 @@ use Dhii\Pipe\CompositeCallbackMiddlewareFactory as Subject;
 use Dhii\Pipe\CallbackMiddlewareFactoryInterface;
 use Dhii\Pipe\MiddlewarePipeFactory;
 use Dhii\Pipe\MiddlewarePipeFactoryInterface;
+use Dhii\Pipe\PipeMiddlewareFactory;
 use Dhii\Pipe\PipeMiddlewareFactoryInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -49,7 +50,6 @@ class CompositeCallableMiddlewareFactoryTest extends TestCase
             $callbackMiddlewareFactory = $this->createCallbackMiddlewareFactory();
             $middlewarePipeFactory = $this->createMiddlewarePipeFactory();
             $callbackPipeFactory = $this->createCallbackPipeFactory($callbackMiddlewareFactory, $middlewarePipeFactory);
-            $this->markTestIncomplete('Still need to implement the factories required below');
             $pipeMiddlewareFactory = $this->createPipeMiddlewareFactory();
             $subject = $this->createSubject($callbackPipeFactory, $pipeMiddlewareFactory);
         }

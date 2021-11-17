@@ -6,6 +6,7 @@ namespace Dhii\Pipe;
 
 use Dhii\Pipe\Exception\DispatchExceptionInterface;
 use Dhii\Pipe\Exception\PipeExceptionInterface;
+use RuntimeException;
 
 /**
  * @template Input
@@ -22,8 +23,8 @@ interface PipeInterface
      * @psalm-param \Input $input
      * @return mixed The result of processing.
      * @psalm-return \Output
-     * @throws DispatchExceptionInterface If one of the middlewares caused an error.
-     * @throws PipeExceptionInterface If problem dispatching.
+     * @throws DispatchExceptionInterface&RuntimeException If one of the middlewares caused an error.
+     * @throws PipeExceptionInterface&RuntimeException If problem dispatching.
      */
     public function dispatch($input);
 }

@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Dhii\Pipe\Exception;
 
 use Dhii\Pipe\PipeInterface;
-use Exception;
+use RuntimeException;
 use Throwable;
 
 /**
  * A problem with a pipe.
  */
-class PipeException extends Exception implements PipeExceptionInterface
+class PipeException extends RuntimeException implements PipeExceptionInterface
 {
     /** @var PipeInterface */
     protected $pipe;

@@ -20,7 +20,7 @@ use PHPUnit\Framework\TestCase;
 class CompositeCallableMiddlewareFactoryTest extends TestCase
 {
     /**
-     * @return Subject|MockObject The new mock of the test subject.
+     * @return Subject&MockObject The new mock of the test subject.
      */
     protected function createSubject(
         CallbackPipeFactoryInterface   $callbackPipeFactory,
@@ -66,7 +66,7 @@ class CompositeCallableMiddlewareFactoryTest extends TestCase
     /**
      * @param CallbackMiddlewareFactoryInterface $callbackMiddlewareFactory
      * @param MiddlewarePipeFactoryInterface $middlewarePipeFactory
-     * @return CallbackPipeFactoryInterface|MockObject
+     * @return CallbackPipeFactoryInterface&MockObject
      */
     protected function createCallbackPipeFactory(
         CallbackMiddlewareFactoryInterface $callbackMiddlewareFactory,
@@ -81,7 +81,7 @@ class CompositeCallableMiddlewareFactoryTest extends TestCase
     }
 
     /**
-     * @return CallbackMiddlewareFactoryInterface|MockObject
+     * @return CallbackMiddlewareFactoryInterface&MockObject
      */
     protected function createCallbackMiddlewareFactory(): CallbackMiddlewareFactoryInterface
     {

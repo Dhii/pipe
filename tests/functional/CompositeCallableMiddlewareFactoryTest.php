@@ -40,12 +40,21 @@ class CompositeCallableMiddlewareFactoryTest extends TestCase
     {
         {
             $input = uniqid('input');
-            $middlewareStart = function ($input, callable $next) use (&$sequence) { yield $input; yield from $next($input); };
-            $middlewareA = function ($input, callable $next) use (&$sequence) { yield 'A'; yield from $next($input); };
-            $middlewareB = function ($input, callable $next) use (&$sequence) { yield 'B'; yield from $next($input); };
-            $middlewareEnd = function ($input, callable $next) use (&$sequence) { return []; };
-            $middleware = [$middlewareStart, $middlewareA, $middlewareB, $middlewareEnd];
-            $final = function () use (&$sequence) { $sequence[] = '.'; };
+            $middlewareA = function (string $input, callable $next) {
+                $result = $next($input);
+                $result[] = 'A';
+
+                return $result;
+            };
+            $middlewareB = function (string $input, callable $next) {
+                $result = $next($input);
+                $result[] = 'B';
+
+                return $result;
+            };
+            $middlewareEnd = function (string $input, callable $next) { return [$input]; };
+            $middleware = [$middlewareA, $middlewareB, $middlewareEnd];
+            $final = function (string $input) { return $input; };
 
             $callbackMiddlewareFactory = $this->createCallbackMiddlewareFactory();
             $middlewarePipeFactory = $this->createMiddlewarePipeFactory();
@@ -60,7 +69,7 @@ class CompositeCallableMiddlewareFactoryTest extends TestCase
         }
 
         {
-            $this->assertEquals([$input, 'A', 'B', '.'], iterator_to_array($result));
+            $this->assertEquals([$input,'B', 'A'], $result);
         }
     }
 
@@ -88,7 +97,6 @@ class CompositeCallableMiddlewareFactoryTest extends TestCase
     {
         $mock = $this->getMockBuilder(CallbackMiddlewareFactory::class)
             ->enableProxyingToOriginalMethods()
-            ->setConstructorArgs([])
             ->getMock();
 
         return $mock;
@@ -101,7 +109,18 @@ class CompositeCallableMiddlewareFactoryTest extends TestCase
     {
         $mock = $this->getMockBuilder(MiddlewarePipeFactory::class)
             ->enableProxyingToOriginalMethods()
-            ->setConstructorArgs([])
+            ->getMock();
+
+        return $mock;
+    }
+
+    /**
+     * @return PipeMiddlewareFactoryInterface&MockObject
+     */
+    protected function createPipeMiddlewareFactory(): PipeMiddlewareFactoryInterface
+    {
+        $mock = $this->getMockBuilder(PipeMiddlewareFactory::class)
+            ->enableProxyingToOriginalMethods()
             ->getMock();
 
         return $mock;

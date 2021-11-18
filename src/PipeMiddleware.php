@@ -17,7 +17,6 @@ class PipeMiddleware implements MiddlewareInterface
     protected $pipe;
 
     /**
-     * @param PipeInterface $pipe
      * @psalm-param PipeInterface<\Input, \Output>
      */
     public function __construct(PipeInterface $pipe)

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Dhii\Pipe\Exception;
 
 use Dhii\Pipe\MiddlewareInterface;
@@ -19,7 +21,7 @@ class DispatchException extends PipeException implements DispatchExceptionInterf
         PipeInterface $pipe,
         MiddlewareInterface $middleware,
         Throwable $previous = null,
-        $code = 0
+        int $code = 0
     ) {
         parent::__construct($message, $pipe, $previous, $code);
         $this->middleware = $middleware;

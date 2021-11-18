@@ -19,10 +19,10 @@ class MiddlewareException extends RuntimeException implements MiddlewareExceptio
     protected $middleware;
 
     public function __construct(
-        $message,
+        string $message,
         MiddlewareInterface $middleware,
         Throwable $previous = null,
-        $code = 0
+        int $code = 0
     ) {
         parent::__construct($message, $code, $previous);
         $this->middleware = $middleware;

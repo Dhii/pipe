@@ -16,7 +16,7 @@ class PipeException extends RuntimeException implements PipeExceptionInterface
     /** @var PipeInterface */
     protected $pipe;
 
-    public function __construct(string $message, PipeInterface $pipe, Throwable $previous = null, $code = 0)
+    public function __construct(string $message, PipeInterface $pipe, Throwable $previous = null, int $code = 0)
     {
         parent::__construct($message, $code, $previous);
         $this->pipe = $pipe;

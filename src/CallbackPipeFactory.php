@@ -60,10 +60,10 @@ class CallbackPipeFactory implements CallbackPipeFactoryInterface
     /**
      * Makes sure that the given list is a {@see Traversable}.
      *
-     * @param iterable $iterable The list.
+     * @param iterable<mixed> $iterable The list.
      * @template Element
      * @psalm-param iterable<Element>
-     * @return Traversable The traversable.
+     * @return Traversable<mixed> The traversable.
      * @psalm-return Traversable<Element>
      * @throws RuntimeException If problem normalizing.
      */

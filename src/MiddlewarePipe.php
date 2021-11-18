@@ -127,6 +127,12 @@ class MiddlewarePipe implements PipeInterface
         return $callback;
     }
 
+    /**
+     * @param iterable<mixed> $iterator
+     * @template Element
+     * @psalm-param iterable<\Element>
+     * @psalm-return Iterator<\Element>
+     */
     protected function normalizeIterator(iterable $iterator): Iterator
     {
         $iterator = $this->normalizeTraversable($iterator);
@@ -137,6 +143,12 @@ class MiddlewarePipe implements PipeInterface
         return $iterator;
     }
 
+    /**
+     * @template ELement
+     * @param iterable<mixed> $traversable
+     * @psalm-param iterable<\ELement>
+     * @psalm-return Traversable<\Element>
+     */
     protected function normalizeTraversable(iterable $traversable): Traversable
     {
         if (!$traversable instanceof Traversable) {

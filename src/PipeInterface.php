@@ -23,8 +23,8 @@ interface PipeInterface
      * @psalm-param \Input $input
      * @return mixed The result of processing.
      * @psalm-return \Output
-     * @throws DispatchExceptionInterface&RuntimeException If one of the middlewares caused an error.
-     * @throws PipeExceptionInterface&RuntimeException If problem dispatching.
+     * @throws DispatchExceptionInterface|RuntimeException If one of the middlewares caused an error.
+     * @throws PipeExceptionInterface|RuntimeException If problem dispatching.
      */
     public function dispatch($input);
 }
